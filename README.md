@@ -3,99 +3,44 @@
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
 ![Spring](https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white)
 
-A simple **Task Manager API** built using **Java**, **Spring Boot**, and **H2 in-memory database**.
-
-This project was developed as a study/practice exercise for building CRUD operations using Spring Boot, following REST principles.
-
----
-
-## 📚 Table of Contents
-
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [Usage](#usage)
-- [API Endpoints](#api-endpoints)
-- [Database](#database)
+API REST para gerenciamento de tarefas, desenvolvida em **Java + Spring Boot** como projeto de estudo.  
+Permite criar, listar, atualizar e excluir tarefas.
 
 ---
 
-## ⚙️ Installation
-
-1. Clone the repository:
-
-```bash
-https://github.com/FelipeZelent/Task-Manager.git
-```
-2. Build the project using Maven:
-```bash
-./mvnm clean install
- ```
----
-
-## 🔧 Configuration
-
-No special configuration is needed. The project uses H2 (in-memory) by default.
-All settings can be found in:
-```bash
-src/main/resources/application.properties
-```
+## Tecnologias
+- Java 17+
+- Spring Boot
+- Spring Data JPA
+- H2 Database
+- Maven
 
 ---
 
-### 🚀 Usage
-
-1. Run the application
+## Como executar
 ```bash
+git clone https://github.com/FelipeZelent/Task-Manager.git
+cd Task-Manager
+./mvnw clean install
 ./mvnw spring-boot:run
 ```
-2. Access the API at:
-```bash
-http://localhost:8080/api/tasks
-```
+- API: http://localhost:8080/api/tasks
+- H2 Console: http://localhost:8080/h2-console
+  - JDBC: jdbc:h2:mem:testdb | user: sa | password: (vazio)
 
-### 📬 API Endpoints
+---
+## Endpoints
+- GET /api/tasks → lista todas as tarefas
+- GET /api/tasks/{id} → busca tarefa por ID
+- POST /api/tasks → cria nova tarefa
+- PUT /api/tasks/{id} → atualiza tarefa existente
+- DELETE /api/tasks/{id} → remove tarefa
 
-GET TASKS
-```bash
-GET /api/tasks
-```
-GET TASK BY ID
-```bash
-GET /api/tasks/{id}
-```
-POST TASK
-```bash
-POST /api/tasks
-```
-Cria uma nova tarefa
+---
+## Exemplo de criação (POST)
+curl -X POST http://localhost:8080/api/tasks \
+ -H "Content-Type: application/json" \
+ -d '{"title":"Estudar Spring","description":"Criar endpoints","completed":false}'
 
-Request Body:
-```bash
-{
-  "title": "Estudar Spring Boot",
-  "description": "Finalizar módulo de API",
-  "completed": false
-}
-```
-PUT TASK
-```bash
-PUT /api/tasks/{id}
-```
-Atualiza os dados de uma tarefa existente.
 
-DELETE TASK
-```bash
-DELETE /api/tasks/{id}
-```
-Remove uma tarefa do sistema.
 
-## 🗄️ Database
-Este projeto utiliza o H2 Database, um banco de dados em memória ideal para testes e desenvolvimento local.
-
-Acesse o console em:
-```bash
-http://localhost:8080/h2-console
-```
-- JDBC URL: jdbc:h2:mem:testdb
-- Username: sa
-- Password: (em branco)
