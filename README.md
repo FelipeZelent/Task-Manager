@@ -3,8 +3,9 @@
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
 ![Spring](https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white)
 
-API REST para gerenciamento de tarefas, desenvolvida em **Java + Spring Boot** como projeto de estudo.  
-Permite criar, listar, atualizar e excluir tarefas.
+API REST para gerenciamento de tarefas, desenvolvida em Java + Spring Boot como projeto de estudo.  
+Este projeto foi desenvolvido como exercício de prática para construção de operações CRUD seguindo os princípios REST.  
+CRUD → Create · Read · Update · Delete (Criar · Listar · Atualizar · Excluir)
 
 ---
 
