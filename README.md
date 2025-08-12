@@ -5,7 +5,8 @@
 
 API REST para gerenciamento de tarefas, desenvolvida em Java + Spring Boot como projeto de estudo.  
 Este projeto foi desenvolvido como exercício de prática para construção de operações CRUD seguindo os princípios REST.  
-CRUD → Create · Read · Update · Delete (Criar · Listar · Atualizar · Excluir)
+CRUD → Create · Read · Update · Delete 
+      (Criar · Listar · Atualizar · Excluir)
 
 ---
 
