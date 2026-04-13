@@ -1,20 +1,18 @@
-package com.taskmanager.taskmanager.application.service;
+package com.taskmanager.taskmanager.application.usecase;
 
 import com.taskmanager.taskmanager.application.port.in.CreateTaskCommand;
 import com.taskmanager.taskmanager.application.port.in.TaskUseCase;
 import com.taskmanager.taskmanager.application.port.in.UpdateTaskCommand;
 import com.taskmanager.taskmanager.application.port.out.TaskGateway;
 import com.taskmanager.taskmanager.domain.model.Task;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-@Service
-public class TaskApplicationService implements TaskUseCase {
+public class TaskInteractor implements TaskUseCase {
     private final TaskGateway taskGateway;
 
-    public TaskApplicationService(TaskGateway taskGateway) {
+    public TaskInteractor(TaskGateway taskGateway) {
         this.taskGateway = taskGateway;
     }
 

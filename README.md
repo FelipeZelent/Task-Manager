@@ -9,11 +9,17 @@
 
 API REST para gerenciamento de tarefas construída com Java 17, Spring Boot, Spring Web, Spring Data JPA e banco H2 em memória.
 
-O projeto mantém a proposta original de CRUD de tarefas, mas agora está organizado com uma separação mais próxima de Clean Architecture:
+O projeto mantém a proposta original de CRUD de tarefas e agora está organizado para comunicar Clean Architecture de forma explícita:
 
 - `domain`: regra e modelo de domínio
 - `application`: casos de uso e portas
-- `infrastructure`: controller HTTP, persistência e mapeamentos
+- `infrastructure`: controller HTTP, persistência, configuração Spring e mapeamentos
+
+Regra de dependência adotada:
+
+- `domain` não conhece `application` nem `infrastructure`
+- `application` depende apenas de `domain` e das portas
+- `infrastructure` implementa as portas e faz o acoplamento com Spring, HTTP e JPA
 
 ## Tecnologias
 
@@ -35,6 +41,23 @@ Fluxo resumido:
 3. O caso de uso executa a regra de negócio.
 4. A persistência é acessada por uma porta (`TaskGateway`) implementada na infraestrutura.
 5. O resultado volta como DTO de resposta JSON.
+
+Resumo da organização:
+
+```text
+src/main/java/com/taskmanager/taskmanager
+├── domain
+│   └── model
+├── application
+│   ├── port
+│   │   ├── in
+│   │   └── out
+│   └── usecase
+└── infrastructure
+    ├── config
+    ├── persistence
+    └── web
+```
 
 Cada tarefa possui:
 

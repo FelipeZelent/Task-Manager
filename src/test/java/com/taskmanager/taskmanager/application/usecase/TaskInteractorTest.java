@@ -1,4 +1,4 @@
-package com.taskmanager.taskmanager.application.service;
+package com.taskmanager.taskmanager.application.usecase;
 
 import com.taskmanager.taskmanager.application.port.in.CreateTaskCommand;
 import com.taskmanager.taskmanager.application.port.in.UpdateTaskCommand;
@@ -17,12 +17,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-class TaskApplicationServiceTest {
+class TaskInteractorTest {
     @Mock
     private TaskGateway taskGateway;
 
     @InjectMocks
-    private TaskApplicationService taskApplicationService;
+    private TaskInteractor taskInteractor;
 
     @Test
     void shouldCreateTaskThroughGateway() {
@@ -31,7 +31,7 @@ class TaskApplicationServiceTest {
             return new Task(1L, task.getTitle(), task.getDescription(), task.isCompleted());
         });
 
-        Task createdTask = taskApplicationService.create(
+        Task createdTask = taskInteractor.create(
                 new CreateTaskCommand("Estudar", "Arquitetura limpa", false)
         );
 
@@ -51,7 +51,7 @@ class TaskApplicationServiceTest {
         ));
         when(taskGateway.save(any(Task.class))).thenAnswer(invocation -> invocation.getArgument(0));
 
-        Optional<Task> updatedTask = taskApplicationService.update(
+        Optional<Task> updatedTask = taskInteractor.update(
                 1L,
                 new UpdateTaskCommand("Novo", "Descricao nova", true)
         );
@@ -66,7 +66,7 @@ class TaskApplicationServiceTest {
     void shouldReturnEmptyWhenUpdatingMissingTask() {
         when(taskGateway.findById(99L)).thenReturn(Optional.empty());
 
-        Optional<Task> updatedTask = taskApplicationService.update(
+        Optional<Task> updatedTask = taskInteractor.update(
                 99L,
                 new UpdateTaskCommand("Novo", "Descricao nova", true)
         );
@@ -79,7 +79,7 @@ class TaskApplicationServiceTest {
     void shouldDeleteTaskOnlyWhenItExists() {
         when(taskGateway.existsById(1L)).thenReturn(true);
 
-        boolean deleted = taskApplicationService.deleteById(1L);
+        boolean deleted = taskInteractor.deleteById(1L);
 
         assertThat(deleted).isTrue();
         verify(taskGateway).deleteById(1L);
